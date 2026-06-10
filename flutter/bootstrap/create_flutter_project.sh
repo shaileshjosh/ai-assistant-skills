@@ -3,6 +3,21 @@
 PROJECT_NAME=$1
 AI_TOOL=$2
 
+# ----------------------------------------------------
+
+# Configuration
+
+# ----------------------------------------------------
+
+SKILLS_REPO="[git@github.com](mailto:git@github.com):shaileshjosh/ai-assistant-skills.git"
+TEMP_DIR="/tmp/ai-assistant-skills"
+
+# ----------------------------------------------------
+
+# Validation
+
+# ----------------------------------------------------
+
 if [ -z "$PROJECT_NAME" ]; then
 echo ""
 echo "Usage:"
@@ -16,6 +31,12 @@ fi
 
 if [ -z "$AI_TOOL" ]; then
 AI_TOOL="cursor"
+fi
+
+if [ "$AI_TOOL" != "cursor" ] && [ "$AI_TOOL" != "claude" ]; then
+echo "Invalid AI tool."
+echo "Supported values: cursor | claude"
+exit 1
 fi
 
 # ----------------------------------------------------
@@ -38,7 +59,7 @@ fi
 
 # ----------------------------------------------------
 
-# Create Project
+# Create Flutter Project
 
 # ----------------------------------------------------
 
@@ -55,7 +76,7 @@ fi
 
 # ----------------------------------------------------
 
-# Download Skills Repository
+# Clone Skills Repository
 
 # ----------------------------------------------------
 
@@ -63,14 +84,13 @@ echo ""
 echo "Downloading AI skills..."
 echo ""
 
-rm -rf /tmp/ai-assistant-skills
+rm -rf "$TEMP_DIR"
 
-git clone 
-https://github.com/joshsoftware/ai-assistant-skills.git 
-/tmp/ai-assistant-skills
+git clone "$SKILLS_REPO" "$TEMP_DIR"
 
 if [ $? -ne 0 ]; then
-echo "Failed to download skills repository."
+echo "Failed to clone skills repository."
+echo "Verify GitHub SSH access."
 exit 1
 fi
 
@@ -80,57 +100,31 @@ fi
 
 # ----------------------------------------------------
 
-mkdir -p "$PROJECT_NAME/Skills"
-
-cp -R 
-/tmp/ai-assistant-skills/flutter/skills/* 
-"$PROJECT_NAME/Skills/"
-
-# ----------------------------------------------------
-
-# Cursor Setup
-
-# ----------------------------------------------------
-
 if [ "$AI_TOOL" = "cursor" ]; then
 
 ```
 echo "Configuring Cursor..."
 
-mkdir -p "$PROJECT_NAME/.cursor"
+mkdir -p "$PROJECT_NAME/.cursor/skills"
 
-cat > "$PROJECT_NAME/.cursor/rules.md" << EOF
+cp -R \
+"$TEMP_DIR/flutter/skills/"* \
+"$PROJECT_NAME/.cursor/skills/"
 ```
 
-Read all files inside Skills/.
-
-Use project-bootstrap skill first.
-
-Follow all standards while generating code.
-EOF
-
 fi
-
-# ----------------------------------------------------
-
-# Claude Setup
-
-# ----------------------------------------------------
 
 if [ "$AI_TOOL" = "claude" ]; then
 
 ```
 echo "Configuring Claude..."
 
-cat > "$PROJECT_NAME/CLAUDE.md" << EOF
+mkdir -p "$PROJECT_NAME/.claude/skills"
+
+cp -R \
+"$TEMP_DIR/flutter/skills/"* \
+"$PROJECT_NAME/.claude/skills/"
 ```
-
-Read all files inside Skills/.
-
-Use project-bootstrap skill first.
-
-Follow all standards while generating code.
-EOF
 
 fi
 
@@ -140,7 +134,7 @@ fi
 
 # ----------------------------------------------------
 
-rm -rf /tmp/ai-assistant-skills
+rm -rf "$TEMP_DIR"
 
 echo ""
 echo "========================================"
@@ -155,14 +149,14 @@ echo "cd $PROJECT_NAME"
 echo ""
 
 if [ "$AI_TOOL" = "cursor" ]; then
-echo "Open Cursor and run:"
+echo "Open project in Cursor and run:"
 echo ""
 echo "Use project-bootstrap skill."
 echo ""
 fi
 
 if [ "$AI_TOOL" = "claude" ]; then
-echo "Open Claude and run:"
+echo "Open project in Claude and run:"
 echo ""
 echo "Use project-bootstrap skill."
 echo ""
