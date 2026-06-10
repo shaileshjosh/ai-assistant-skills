@@ -1,49 +1,45 @@
-# Flutter Project Bootstrap
+---
+name: project-bootstrap
+description: Initialize a new Flutter application using the approved architecture and technology stack.
+---
+
+# Project Bootstrap
 
 ## When to use
 
 Use this skill when:
 
 - Creating a new Flutter project
-- Initializing project architecture
-- Setting up project dependencies
-- Establishing project standards
+- Initializing project structure
+- Setting up dependencies
+- Configuring application foundations
 
-## Instructions
+## Responsibilities
 
-Read and apply:
+1. Read and follow the architecture skill.
+2. Configure all required packages.
+3. Create the base folder structure.
+4. Configure Riverpod.
+5. Configure GoRouter.
+6. Configure Dio.
+7. Configure Hive.
+8. Configure Flutter Secure Storage.
+9. Configure AppTheme.
+10. Configure ProviderScope.
+
+## Required Skills
 
 - architecture
-- api-standards
-- auth-standards
-- data-storage
-- caching
-- unit-testing
 
-Create:
+## Output
 
-lib/
-├── core/
-├── features/
-├── shared/
-└── main.dart
+Create the project foundation only.
 
-Configure:
+Do NOT create:
 
-- Riverpod
-- Dio
-- GoRouter
-- Hive
-- FlutterSecureStorage
-- local_auth
+- Login feature
+- Dashboard feature
+- Profile feature
+- Business modules
 
-Generate:
-
-- AppConstants
-- ApiConstants
-- CacheConstants
-- ApiClient
-- SecureStorageService
-- HiveStorageService
-
-Verify project builds successfully.
+Feature generation is handled by the architecture skill.
