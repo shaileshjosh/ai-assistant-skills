@@ -1,19 +1,17 @@
 # Flutter AI Skills Framework
 
-This repository provides reusable AI skills for Flutter development using Cursor and Claude.
+Reusable Flutter AI skills for Claude and Cursor.
 
-The framework standardizes:
+This framework standardizes:
 
 * Clean Architecture
 * Feature-first development
 * API integrations
 * Authentication
-* Data storage
+* Local storage
 * Caching
 * Testing
-* Code reviews
-
-The goal is to ensure all Flutter projects follow the same architecture, security standards, and development practices.
+* Pull Request Reviews
 
 ---
 
@@ -30,28 +28,20 @@ flutter/
 │
 └── skills/
     ├── project-bootstrap/
-    │   └── SKILL.md
     ├── architecture/
-    │   └── SKILL.md
     ├── api-standards/
-    │   └── SKILL.md
     ├── auth-standards/
-    │   └── SKILL.md
     ├── data-storage/
-    │   └── SKILL.md
     ├── caching/
-    │   └── SKILL.md
     ├── unit-testing/
-    │   └── SKILL.md
     └── flutter-pr-review/
-        └── SKILL.md
 ```
 
 ---
 
 # Prerequisites
 
-Install one of:
+Install either:
 
 ## Flutter
 
@@ -69,9 +59,7 @@ The bootstrap script automatically prefers FVM and falls back to Flutter.
 
 ---
 
-# Creating A New Project
-
-Download the bootstrap script:
+# Download Bootstrap Script
 
 ```bash
 curl -O https://raw.githubusercontent.com/shaileshjosh/ai-assistant-skills/main/flutter/bootstrap/create_flutter_project.sh
@@ -91,21 +79,11 @@ chmod +x create_flutter_project.sh
 ./create_flutter_project.sh banking_app cursor
 ```
 
-Open project:
+Open:
 
 ```bash
 cd banking_app
 cursor .
-```
-
-Generated structure:
-
-```text
-banking_app/
-├── AGENTS.md
-├── .cursor/
-│   └── skills/
-└── lib/
 ```
 
 ---
@@ -116,59 +94,33 @@ banking_app/
 ./create_flutter_project.sh banking_app claude
 ```
 
-Open project:
+Open:
 
 ```bash
 cd banking_app
 claude
 ```
 
-Generated structure:
-
-```text
-banking_app/
-├── CLAUDE.md
-├── .claude/
-│   └── skills/
-└── lib/
-```
-
 ---
 
 # Available Skills
 
-| Skill             | Purpose                                            |
-| ----------------- | -------------------------------------------------- |
-| project-bootstrap | Project initialization                             |
-| architecture      | Architecture, folder structure, feature generation |
-| api-standards     | APIs, repositories, models, datasources            |
-| auth-standards    | Authentication and authorization                   |
-| data-storage      | Hive and Secure Storage                            |
-| caching           | Cache implementation and invalidation              |
-| unit-testing      | Unit, widget and integration testing               |
-| flutter-pr-review | Pull request review                                |
+| Skill             | Purpose                                 |
+| ----------------- | --------------------------------------- |
+| project-bootstrap | Project initialization                  |
+| architecture      | Architecture and feature generation     |
+| api-standards     | APIs, repositories, models, datasources |
+| auth-standards    | Authentication and authorization        |
+| data-storage      | Hive and Secure Storage                 |
+| caching           | Offline support and caching             |
+| unit-testing      | Unit, widget and integration testing    |
+| flutter-pr-review | Pull request review                     |
 
 ---
 
 # Developer Workflow
 
 ## Step 1
-
-Create a project:
-
-```bash
-./create_flutter_project.sh my_app cursor
-```
-
-or
-
-```bash
-./create_flutter_project.sh my_app claude
-```
-
----
-
-## Step 2
 
 Initialize the project:
 
@@ -184,7 +136,7 @@ The AI automatically:
 
 ---
 
-## Step 3
+## Step 2
 
 Create a feature:
 
@@ -192,28 +144,18 @@ Create a feature:
 Create Customer feature
 ```
 
-The AI automatically applies:
+The AI automatically:
 
-* architecture
-
----
-
-## Step 4
-
-Create API integration:
-
-```text
-Create Customer API integration
-```
-
-The AI automatically applies:
-
-* architecture
-* api-standards
+* Creates domain layer
+* Creates data layer
+* Creates presentation layer
+* Creates providers
+* Creates routing
+* Creates tests when required
 
 ---
 
-## Step 5
+## Step 3
 
 Create authentication:
 
@@ -230,26 +172,12 @@ The AI automatically applies:
 
 ---
 
-## Step 6
-
-Add local storage:
-
-```text
-Store customer profile locally
-```
-
-The AI automatically applies:
-
-* data-storage
-
----
-
-## Step 7
+## Step 4
 
 Add caching:
 
 ```text
-Add caching to customer list API
+Add caching to Customer feature
 ```
 
 The AI automatically applies:
@@ -258,7 +186,7 @@ The AI automatically applies:
 
 ---
 
-## Step 8
+## Step 5
 
 Generate tests:
 
@@ -272,9 +200,9 @@ The AI automatically applies:
 
 ---
 
-## Step 9
+## Step 6
 
-Review PR:
+Review code:
 
 ```text
 Review current branch changes
@@ -286,63 +214,47 @@ The AI automatically applies:
 
 ---
 
+# Example Prompts
+
+```text
+Initialize this project
+
+Create Login feature
+
+Create Customer feature
+
+Create Dashboard feature
+
+Add caching to Customer feature
+
+Generate tests for Customer feature
+
+Review current branch changes
+```
+
+---
+
 # Architecture
 
-The repository architecture standard is defined in:
+The architecture specification is defined in:
 
 ```text
 skills/architecture/SKILL.md
 ```
 
-This is the canonical source for:
+This is the source of truth for:
 
 * Clean Architecture
-* Layer responsibilities
-* Feature-first structure
-* Dependency injection
+* Feature First Structure
+* Dependency Rules
 * Riverpod
 * GoRouter
 * Dio
 * Hive
 * Secure Storage
-* Testing standards
-* Approved package versions
+* Testing Standards
 
 All generated code must follow this specification.
-
----
-
-# Adding New Skills
-
-Create a new folder:
-
-```text
-flutter/skills/payment-module/
-└── SKILL.md
-```
-
-Example:
-
-```markdown
----
-name: payment-module
-description: Payment feature standards.
----
-
-# Payment Module
-
-## When to use
-
-Use this skill when implementing payments.
-
-## Standards
-
-...
-```
-
-Commit and push.
-
-All newly created projects will automatically receive the new skill.
 
 ---
 
@@ -352,5 +264,6 @@ All newly created projects will automatically receive the new skill.
 2. Scalability
 3. Clean Architecture
 4. Testability
+5. Maintainability
 
 All skills and generated code must follow these priorities.
