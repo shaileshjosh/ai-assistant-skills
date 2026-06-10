@@ -1,16 +1,16 @@
 # Flutter AI Skills Framework
 
-This repository provides reusable AI skills for Flutter development using tools such as Cursor and Claude.
+This repository provides reusable AI skills for Flutter development using Cursor and Claude.
 
-The objective is to standardize:
+The framework standardizes:
 
-* Project Architecture
+* Architecture
 * API Development
 * Authentication
-* Data Storage
+* Storage
 * Caching
 * Testing
-* Code Reviews
+* PR Reviews
 
 across all Flutter projects.
 
@@ -27,38 +27,21 @@ flutter/
 │
 └── skills/
     ├── project-bootstrap/
-    │   └── SKILL.md
-    │
     ├── architecture/
-    │   └── SKILL.md
-    │
     ├── api-standards/
-    │   └── SKILL.md
-    │
     ├── auth-standards/
-    │   └── SKILL.md
-    │
     ├── data-storage/
-    │   └── SKILL.md
-    │
     ├── caching/
-    │   └── SKILL.md
-    │
     ├── unit-testing/
-    │   └── SKILL.md
-    │
     ├── bfsi-auth/
-    │   └── SKILL.md
-    │
     └── flutter-pr-review/
-        └── SKILL.md
 ```
 
 ---
 
 # Prerequisites
 
-Install one of the following:
+Install one of:
 
 ## Flutter
 
@@ -66,27 +49,25 @@ Install one of the following:
 flutter --version
 ```
 
-or
-
 ## FVM
 
 ```bash
 fvm --version
 ```
 
-The bootstrap script automatically uses FVM if available and falls back to Flutter otherwise.
+The bootstrap script automatically prefers FVM and falls back to Flutter.
 
 ---
 
 # Creating A New Project
 
-Download the bootstrap script:
+Download script:
 
 ```bash
 curl -O https://raw.githubusercontent.com/shaileshjosh/ai-assistant-skills/main/flutter/bootstrap/create_flutter_project.sh
 ```
 
-Make it executable:
+Make executable:
 
 ```bash
 chmod +x create_flutter_project.sh
@@ -100,16 +81,19 @@ chmod +x create_flutter_project.sh
 ./create_flutter_project.sh graphify_demo cursor
 ```
 
-Project structure:
+Open project:
+
+```bash
+cd graphify_demo
+cursor .
+```
+
+Prompt:
 
 ```text
-graphify_demo/
-├── android/
-├── ios/
-├── lib/
-├── pubspec.yaml
-└── .cursor/
-    └── skills/
+Use project-bootstrap skill.
+
+Initialize this project.
 ```
 
 ---
@@ -120,16 +104,19 @@ graphify_demo/
 ./create_flutter_project.sh graphify_demo claude
 ```
 
-Project structure:
+Open project:
+
+```bash
+cd graphify_demo
+claude
+```
+
+Prompt:
 
 ```text
-graphify_demo/
-├── android/
-├── ios/
-├── lib/
-├── pubspec.yaml
-└── .claude/
-    └── skills/
+Use project-bootstrap skill.
+
+Initialize this project.
 ```
 
 ---
@@ -138,37 +125,27 @@ graphify_demo/
 
 ## project-bootstrap
 
-Use when creating a new Flutter project.
-
-Example:
-
-```text
-Use project-bootstrap skill.
-
-Initialize this project.
-```
+Initialize a new Flutter project.
 
 Responsibilities:
 
-* Setup project architecture
-* Configure dependencies
-* Setup Riverpod
-* Setup Dio
-* Setup GoRouter
-* Setup Hive
-* Setup Secure Storage
-* Configure testing foundation
+* Project structure
+* Riverpod setup
+* Dio setup
+* GoRouter setup
+* Hive setup
+* Secure Storage setup
+* Testing foundation
 
 ---
 
 ## architecture
 
-Use when:
+Use for:
 
-* Creating new features
-* Creating screens
-* Refactoring modules
-* Generating boilerplate code
+* Feature creation
+* Boilerplate generation
+* Refactoring
 
 Responsibilities:
 
@@ -176,125 +153,80 @@ Responsibilities:
 * Feature-first structure
 * Repository Pattern
 * Dependency Injection
-* Riverpod setup
 
 ---
 
 ## api-standards
 
-Use when:
+Use for:
 
-* Creating APIs
-* Creating repositories
-* Creating interceptors
-* Creating network layers
-
-Responsibilities:
-
-* Dio configuration
-* Error handling
-* Response mapping
-* Request interceptors
-* Token management
+* API integrations
+* Repositories
+* Interceptors
+* Network layer
 
 ---
 
 ## auth-standards
 
-Use when:
+Use for:
 
 * Login
 * Logout
-* JWT Authentication
-* Refresh Tokens
-* Session Management
-* Route Protection
-* Biometric Authentication
-
-Responsibilities:
-
-* Authentication architecture
-* Token storage
-* Session handling
-* Security best practices
+* JWT
+* Refresh tokens
+* Biometrics
+* Session management
 
 ---
 
 ## data-storage
 
-Use when:
+Use for:
 
 * Hive
 * Secure Storage
-* Local Data Persistence
-
-Responsibilities:
-
-* Storage architecture
-* Secure storage implementation
-* Data lifecycle management
+* Local persistence
 
 ---
 
 ## caching
 
-Use when:
+Use for:
 
 * Offline support
-* API response caching
 * Cache invalidation
-
-Responsibilities:
-
-* Cache strategy
-* TTL handling
-* Cache refresh mechanism
+* Repository caching
 
 ---
 
 ## unit-testing
 
-Use when:
+Use for:
 
-* Writing unit tests
-* Widget testing
-* Mock generation
-
-Responsibilities:
-
-* Test coverage
-* Mock setup
-* Repository testing
-* Provider testing
+* Unit Tests
+* Widget Tests
+* Mocking
 
 ---
 
 ## bfsi-auth
 
-Use when implementing BFSI authentication.
-
-Responsibilities:
-
-* Login
-* Logout
-* MPIN
-* Biometric Login
-* Session Timeout
-* JWT Authentication
+Use for BFSI authentication modules.
 
 Example:
 
 ```text
 Use bfsi-auth skill.
 
-Create authentication module.
+Create login module.
 ```
 
 ---
 
 ## flutter-pr-review
 
-Use before creating a Pull Request.
+Use before creating a PR.
 
 Example:
 
@@ -304,21 +236,11 @@ Use flutter-pr-review skill.
 Review current branch changes.
 ```
 
-Responsibilities:
-
-* Architecture review
-* Security review
-* Testing review
-* Performance review
-* Best practice validation
-
 ---
 
 # Recommended Workflow
 
-## Step 1
-
-Create a project:
+## 1. Create Project
 
 ```bash
 ./create_flutter_project.sh my_app cursor
@@ -332,9 +254,7 @@ or
 
 ---
 
-## Step 2
-
-Initialize the project:
+## 2. Initialize Project
 
 ```text
 Use project-bootstrap skill.
@@ -344,9 +264,7 @@ Initialize this project.
 
 ---
 
-## Step 3
-
-Generate features:
+## 3. Generate Features
 
 ```text
 Use architecture skill.
@@ -354,19 +272,9 @@ Use architecture skill.
 Create Customer feature.
 ```
 
-or
-
-```text
-Use bfsi-auth skill.
-
-Create Login feature.
-```
-
 ---
 
-## Step 4
-
-Create APIs:
+## 4. Generate APIs
 
 ```text
 Use api-standards skill.
@@ -376,9 +284,7 @@ Create Customer API integration.
 
 ---
 
-## Step 5
-
-Generate tests:
+## 5. Generate Tests
 
 ```text
 Use unit-testing skill.
@@ -388,9 +294,7 @@ Generate tests for Customer feature.
 
 ---
 
-## Step 6
-
-Review before merge:
+## 6. Review Before Merge
 
 ```text
 Use flutter-pr-review skill.
@@ -400,68 +304,57 @@ Review current branch changes.
 
 ---
 
-# Adding New Skills
+# Troubleshooting
 
-Create a new folder under:
+Verify Flutter:
 
-```text
-flutter/skills/
+```bash
+flutter --version
 ```
 
-Example:
+or
+
+```bash
+fvm flutter --version
+```
+
+Verify repository access:
+
+```bash
+git clone https://github.com/shaileshjosh/ai-assistant-skills.git /tmp/test-skills
+```
+
+Verify skills:
+
+```bash
+ls /tmp/test-skills/flutter/skills
+```
+
+Expected folders:
+
+```text
+api-standards
+architecture
+auth-standards
+bfsi-auth
+caching
+data-storage
+flutter-pr-review
+project-bootstrap
+unit-testing
+```
+
+---
+
+# Contributing
+
+To add a new skill:
 
 ```text
 flutter/skills/payment-module/
 └── SKILL.md
 ```
 
-Recommended structure:
+Commit and push.
 
-```markdown
-# Skill Name
-
-## When To Use
-
-Describe usage.
-
-## Responsibilities
-
-Describe expected behaviour.
-
-## Standards
-
-Describe implementation guidelines.
-```
-
-After committing and pushing, the skill will automatically be available in newly created projects.
-
----
-
-# Coding Standards
-
-All generated code should follow:
-
-* Clean Architecture
-* Feature-first structure
-* Riverpod
-* Dio
-* Hive
-* Flutter Secure Storage
-* Material 3
-* Null Safety
-* Proper Error Handling
-* Unit Testing
-* Repository Pattern
-* Dependency Injection
-
----
-
-# Support
-
-If a skill requires updates:
-
-1. Modify the relevant `SKILL.md`
-2. Commit changes
-3. Push to repository
-
-All future projects created using the bootstrap script will automatically use the updated skill definitions.
+All newly created projects will automatically receive the updated skills.

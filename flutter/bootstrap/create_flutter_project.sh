@@ -9,7 +9,7 @@ AI_TOOL=$2
 
 # ----------------------------------------------------
 
-SKILLS_REPO="[git@github.com](mailto:git@github.com):shaileshjosh/ai-assistant-skills.git"
+SKILLS_REPO="https://github.com/shaileshjosh/ai-assistant-skills.git"
 TEMP_DIR="/tmp/ai-assistant-skills"
 
 # ----------------------------------------------------
@@ -23,8 +23,9 @@ echo ""
 echo "Usage:"
 echo "./create_flutter_project.sh <project_name> <cursor|claude>"
 echo ""
-echo "Example:"
+echo "Examples:"
 echo "./create_flutter_project.sh graphify_demo cursor"
+echo "./create_flutter_project.sh graphify_demo claude"
 echo ""
 exit 1
 fi
@@ -36,6 +37,11 @@ fi
 if [ "$AI_TOOL" != "cursor" ] && [ "$AI_TOOL" != "claude" ]; then
 echo "Invalid AI tool."
 echo "Supported values: cursor | claude"
+exit 1
+fi
+
+if [ -d "$PROJECT_NAME" ]; then
+echo "Directory '$PROJECT_NAME' already exists."
 exit 1
 fi
 
@@ -76,7 +82,7 @@ fi
 
 # ----------------------------------------------------
 
-# Clone Skills Repository
+# Download Skills
 
 # ----------------------------------------------------
 
@@ -90,13 +96,18 @@ git clone "$SKILLS_REPO" "$TEMP_DIR"
 
 if [ $? -ne 0 ]; then
 echo "Failed to clone skills repository."
-echo "Verify GitHub SSH access."
+exit 1
+fi
+
+if [ ! -d "$TEMP_DIR/flutter/skills" ]; then
+echo "Skills folder not found."
+echo "Expected path: flutter/skills"
 exit 1
 fi
 
 # ----------------------------------------------------
 
-# Copy Skills
+# Setup AI Tool
 
 # ----------------------------------------------------
 
@@ -145,21 +156,22 @@ echo "AI Tool : $AI_TOOL"
 echo ""
 echo "Next Steps:"
 echo ""
-echo "cd $PROJECT_NAME"
-echo ""
 
 if [ "$AI_TOOL" = "cursor" ]; then
-echo "Open project in Cursor and run:"
+echo "cd $PROJECT_NAME"
+echo "cursor ."
 echo ""
+echo "Prompt:"
 echo "Use project-bootstrap skill."
-echo ""
 fi
 
 if [ "$AI_TOOL" = "claude" ]; then
-echo "Open project in Claude and run:"
+echo "cd $PROJECT_NAME"
+echo "claude"
 echo ""
+echo "Prompt:"
 echo "Use project-bootstrap skill."
-echo ""
 fi
 
+echo ""
 echo "========================================"
