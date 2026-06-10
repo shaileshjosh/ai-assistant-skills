@@ -21,15 +21,21 @@ When a request matches a category below:
 
 ---
 
-## Skill Selection
-
 ### Project Initialization
 
 Load:
 
-* project-bootstrap
+- project-bootstrap
 
----
+Trigger when user requests:
+
+- Initialize this project
+- Setup this project
+- Set up this project
+- Bootstrap this project
+- Configure project foundation
+- Create project structure
+- Prepare project architecture
 
 ### New Feature
 
